@@ -22,14 +22,15 @@
             ]
           },
           {
-            "group": "Hướng Dẫn Chi Tiết",
+            "group": "Import Data",
             "pages": [
+              "essentials/quy-chuan-file-dau-vao",
               "essentials/settings",
-              "essentials/navigation"
+              "essentials/settings-copied-1"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Power Query",
             "pages": [
               "essentials/markdown",
               "essentials/code",

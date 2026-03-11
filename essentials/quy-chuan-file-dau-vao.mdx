@@ -1,0 +1,13 @@
+---
+title: "Quy chuần file đầu vào"
+---
+
+Hệ thống BI & Data Warehouse đỏi hỏi dữ liệu đầu vào cần có kiến trúc rõ ràng để hệ thống có thể tự động parse (bóc tách) và đưa vào Model. Trước khi upload, vui lòng đảm bảo tệp của bạn tuân thủ các quy tắc sau:
+
+1. **Định dạng hỗ trợ:** `.xlsx`, `.xls` (dành cho tệp Excel) và `.csv` (dành cho tệp text phẳng ngăn cách bằng dấu phẩy).
+2. **Kích thước tối đa:** Hệ thống hỗ trợ xử lý file lớn lên đến **500MB**. Tuy nhiên, nếu file lớn hơn dung lượng này, bạn nên chia nhỏ (split) file hoặc kiểm tra xem có lưu trữ ảnh/format màu sắc không cần thiết làm nặng file hay không. Các tệp này sẽ hiển thị cảnh báo phụ (Large File Warning) khi đẩy lên hệ thống.
+3. **Cấu trúc dữ liệu chuẩn (Khuyên dùng):**
+   - **Dạng Data Table (Dữ liệu bảng chữ nhật):** Dòng đầu tiên (Row 1) nên là dòng **Tiêu đề cột (Headers)**. Các cột phải có tên duy nhất, không trùng lặp và không chứa ký tự đặc biệt làm sai lệch công thức.
+   - **Không Merge Cells lộn xộn:** Hạn chế trộn ô (Merge & Center) trên dữ liệu dạng Fact (Bảng giao dịch) vì hệ thống khó xác định vùng dữ liệu chính xác khi đọc tự động. Dữ liệu cần fill đều đặn (không để trống dữ liệu logic).
+   - **Định dạng Data Type:** Các cột tiền tệ/số (Number/Currency) nên được định dạng số thuần túy. Các cột Ngày tháng (Date) phải theo định dạng hệ thống chuẩn (VD: `DD/MM/YYYY` hoặc `YYYY-MM-DD`).
+   - Mỗi tab bên trong file Excel sẽ được hệ thống đọc thành một **bảng dữ liệu độc lập** (Sheet Table).

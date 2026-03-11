@@ -1,39 +1,27 @@
 ---
-title: "Import từ tệp phẳng (Excel/CSV)"
-icon: "gear"
+title: "Upload Files"
 ---
-
-#### **A. Quy chuẩn file Excel/CSV đầu vào**
-
-Hệ thống BI & Data Warehouse đỏi hỏi dữ liệu đầu vào cần có kiến trúc rõ ràng để hệ thống có thể tự động parse (bóc tách) và đưa vào Model. Trước khi upload, vui lòng đảm bảo tệp của bạn tuân thủ các quy tắc sau:
-
-1. **Định dạng hỗ trợ:** `.xlsx`, `.xls` (dành cho tệp Excel) và `.csv` (dành cho tệp text phẳng ngăn cách bằng dấu phẩy).
-2. **Kích thước tối đa:** Hệ thống hỗ trợ xử lý file lớn lên đến **500MB**. Tuy nhiên, nếu file lớn hơn dung lượng này, bạn nên chia nhỏ (split) file hoặc kiểm tra xem có lưu trữ ảnh/format màu sắc không cần thiết làm nặng file hay không. Các tệp này sẽ hiển thị cảnh báo phụ (Large File Warning) khi đẩy lên hệ thống.
-3. **Cấu trúc dữ liệu chuẩn (Khuyên dùng):**
-   - **Dạng Data Table (Dữ liệu bảng chữ nhật):** Dòng đầu tiên (Row 1) nên là dòng **Tiêu đề cột (Headers)**. Các cột phải có tên duy nhất, không trùng lặp và không chứa ký tự đặc biệt làm sai lệch công thức.
-   - **Không Merge Cells lộn xộn:** Hạn chế trộn ô (Merge & Center) trên dữ liệu dạng Fact (Bảng giao dịch) vì hệ thống khó xác định vùng dữ liệu chính xác khi đọc tự động. Dữ liệu cần fill đều đặn (không để trống dữ liệu logic).
-   - **Định dạng Data Type:** Các cột tiền tệ/số (Number/Currency) nên được định dạng số thuần túy. Các cột Ngày tháng (Date) phải theo định dạng hệ thống chuẩn (VD: `DD/MM/YYYY` hoặc `YYYY-MM-DD`).
-   - Mỗi tab bên trong file Excel sẽ được hệ thống đọc thành một **bảng dữ liệu độc lập** (Sheet Table).
-
-#### **B. Các bước import qua giao diện Web (Sử dụng Hệ thống Excel Parser)**
 
 Quá trình đưa file lên hệ thống bao gồm cơ chế Upload vào kho lưu trữ đám mây (Cloud Storage) và đưa xuống Background Workers (Excel Parser Service) để xử lý lượng lớn dữ liệu ngầm mà không làm treo trình duyệt của bạn. Các bước như sau:
 
-**Bước 1: Khởi tạo tiến trình Import** Tại thanh điều hướng (Sidebar), hãy nhấn vào mục **Connectors / Import**. Trên màn hình tổng hợp, bạn hãy chọn Tab **File Upload** (Biểu tượng Tài liệu/Đám mây).
+**Bước 1: Chọn chức năng Tải file**
 
-**Bước 2: Tải lên tệp (Upload)**
+- Trên thanh công cụ bên trái (Menu), bạn hãy nhấn vào nút **Create Dashboard** (Tạo trang tính).
+- Màn hình sẽ hiện ra bảng chọn nguồn dữ liệu. Bạn hãy nhấn vào nhóm **File Upload**
 
-1. Nhấp vào ô chọn tệp hoặc **Kéo và thả (Drag & Drop)** file Excel/CSV của bạn từ Máy tính vào ô này.
-2. Ngay sau khi tệp được chọn, tiến trình sẽ bắt đầu.
+**Bước 2: Chọn file từ máy tính**
 
-**Bước 3: Hiểu luồng diễn biến hệ thống (Real-time Status)** Thay vì bắt bạn chờ đợi trước màn hình khóa, hệ thống ứng dụng kiến trúc xử lý công nghiệp nhiều bước:
+- Bạn có thể bấm thẳng vào khung màn hình để chọn file từ Máy tính.
+- Hoặc đơn giản hơn: **Kéo file từ máy tính và thả trực tiếp** vào khung vuông đó.
 
-1. **"Uploading to cloud storage..." (0% - 90%):** Tệp của bạn đang được upload an toàn theo đường dẫn mã hóa (Signed URL) thẳng lên Cloud Storage.
-2. **"Processing..." / "Starting import..." (Từ 90% trở đi):** Nền tảng Backend đang bàn giao tệp cho **Excel Parser Engine** (một Robot Python chuyên dụng của hệ thống). Robot này sẽ đọc, bóc tách cấu trúc cột, kiểu dữ liệu, xác định vùng lỗi và rải dữ liệu đó vào Kho Data Warehouse (ClickHouse).
+**Bước 3: Chờ hệ thống tự động xử lý** Ngay khi chọn xong, tiến trình tải lên sẽ bắt đầu. Bạn không cần làm gì thêm, chỉ cần quan sát thanh tiến trình trên màn hình:
 
-**Bước 4: Hoàn thành & Chuyển sang Cấu hình (Data Modeling)**
+- **Từ 0% - 90% (Đang tải lên):** File của bạn đang được sao lưu an toàn lên kho lưu trữ đám mây.
+- **Từ 90% - 100% (Đang xử lý):** Hệ thống đang tự động bóc tách từng cột, từng hàng và đưa vào kho dữ liệu báo cáo sẵn sàng cho bạn sử dụng.
+- Thời gian tải phụ thuộc vào dung lượng file và tốc độ mạng mạng internet của bạn (thông thường chỉ mất vài giây).
 
-- Hệ thống sẽ chạy một thanh tiến trình (Polling Progress) liên tục cập nhật trạng thái của Parser.
-- Quá trình này tùy thuộc vào kích cỡ file có thể mất vài giây đến vài phút.
-- Ngay khi thanh tiến trình báo **"Completed" (100%)**, hệ thống sẽ tung ra một thông báo xác nhận thành công (File Import Complete) và **Tự động chuyển tiếp (Auto-navigate)** bạn sang màn hình **Thư mục (Folder) vừa được tạo** để chứa các bảng dữ liệu của file này.
-- _Lưu ý: Nếu quá trình bị gián đoạn hoặc lỗi (ví dụ: file chứa format không hỗ trợ), hệ thống sẽ báo Fail kèm diễn giải kỹ thuật cụ thể. Bạn có thể sửa file và tiến hành upload lại._
+**Bước 4: Hoàn tất**
+
+- Khi thanh tiến trình báo **100% (Hoàn thành)**, một thông báo xanh sẽ hiện ra báo hiệu "Tải file thành công".
+- Ngay lập tức, hệ thống sẽ **tự động chuyển trang** sang màn hình có chứa các dữ liệu trong file bạn vừa tải lên. Tại đây, bạn đã có thể bắt đầu kéo thả các cột để vẽ biểu đồ!
+- _(Lưu ý nhánh: Nếu file bạn tải lên bị lỗi (ví dụ sai định dạng hoặc bị lỗi cấu trúc), hệ thống sẽ hiện thông báo màu đỏ để báo lỗi. Bạn chỉ cần sửa lại file ở phần A và tải lại)._
