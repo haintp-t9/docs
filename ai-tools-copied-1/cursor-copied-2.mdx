@@ -1,0 +1,34 @@
+---
+description: "Configure Cursor for your documentation workflow"
+title: "KPI Card"
+---
+
+Thẻ điểm hiệu suất (KPI Card) là loại biểu đồ trọng tâm nhất trong các Báo cáo Quản trị. Thay vì trình bày chi tiết theo từng danh mục, KPI Card nhắm đến việc làm nổi bật **một con số tổng duy nhất** (Ví dụ: Tổng Doanh thu, Tổng Lợi nhuận, Tổng Khách hàng). Đây là dạng biểu đồ thường được bố trí ở ngay sát phía trên cùng của Dashboard để Ban Giám đốc có thể nắm bắt nhanh tình hình tổng quan.
+
+---
+
+#### **A. Khởi tạo Thẻ điểm (KPI Card)**
+
+**Bước 1:** Tại thanh công cụ **Visualizations Types** bên phải màn hình, tìm biểu tượng có chữ **123** (hoặc biểu tượng Thẻ Card). **Bước 2:** **Kéo và Điền (Drag & Drop)** biểu tượng này vào khung bản vẽ ở giữa. Hệ thống sẽ tạo ra một khung Thẻ điểm trống.
+
+---
+
+#### **B. Cấu hình Dữ liệu (Gán chỉ số đo lường)**
+
+Để KPI Card tính toán ra con số, bạn chỉ cần cung cấp cho nó duy nhất 1 biến số đo lường (Value). Khi Card đang được chọn sáng viền, hãy nhìn sang Panel bên phải ở tab **Settings (Thiết lập)**:
+
+1. **Value Field (Trường Giá trị):** Đây là nơi bắt buộc phải truyền dữ liệu.
+   - Tại Data Panel (bên trái), hãy tìm đến Cột chứa số liệu bạn muốn tổng hợp (Ví dụ: Cột Doanh Thu, Cột Tiền Lương).
+   - **Kéo (Drag)** Cột đó và **Thả (Drop)** vào ô **Value field**.
+   - Hệ thống sẽ ngay lập tức tính toán Tổng giá trị của toàn bộ dữ liệu trong cột đó và đúc kết thành một con số duy nhất hiện lên giữa Card. _(Lưu ý: Nếu bạn thả một cột chỉ chứa Chữ/Text, hệ thống sẽ tự động chuyển sang phép đếm số lượng dòng - Count)._
+
+#### **C. Tùy chỉnh Giao diện Tương tác (Formatting)**
+
+Đặc thù của KPI Card là các con số phải to, rõ ràng và có màu sắc gợi mở cảm xúc (Xanh báo hiệu Tốt, Đỏ báo hiệu Nguy hiểm). Để tinh chỉnh, bạn có thể điều chỉnh trực tiếp các thông số sau tại tab cài đặt của Card:
+
+- **Label font size:** Điều chỉnh kích cỡ chữ cho Tiêu đề Thẻ (Ví dụ: Chữ "Tổng Doanh Thu").
+- **Label color:** Chỉnh màu sắc cho Tiêu đề. Thường nên ưu tiên màu xám tro để không làm mờ nhạt con số chính.
+- **Number font size:** Kích cỡ của con số trung tâm. (Tiêu chuẩn thường thiết lập ở mức 28px - 36px để tạo điểm nhấn).
+- **Number color:** Cấu hình màu sắc của con số. Bạn có thể chèn các mã màu lục/đỏ tùy theo ý nghĩa của chỉ số.
+
+**Mẹo bố cục Dashboard:** Nên nhóm 3-4 KPI Card quan trọng nhất (như Doanh Thu - Chi Phí - Lợi Nhuận - Tỷ suất) đặt thành một hàng ngang trên cùng của màn hình. Kết hợp với việc kéo giãn kích thước khung Thẻ (Resize) cho đồng đều sẽ mang lại trải nghiệm xem báo cáo cực kỳ trực quan và chuyên nghiệp.

@@ -1,0 +1,46 @@
+---
+description: "Configure Cursor for your documentation workflow"
+title: "Biểu đồ (Bar, Line, Pie...)  "
+---
+
+Sau khi đã hoàn tất bước chuẩn bị Dữ liệu (Import) và Mô hình hóa (Modeling), bước tiếp theo là trực quan hóa dữ liệu thành các Báo cáo Quản trị (Dashboard). Hệ thống cung cấp một bảng vẽ không giới hạn không gian, cho phép người dùng tự do bố trí và sắp xếp các biểu đồ theo nhu cầu phân tích thực tế.
+
+---
+
+#### **A. Tổng quan Giao diện Thiết kế Báo cáo**
+
+Khi bạn chọn **Create Dashboard** (Tạo Báo cáo mới) hoặc mở một báo cáo có sẵn, không gian làm việc sẽ được chia thành 3 khu vực chính:
+
+1. **Khung bản vẽ (Chính giữa):** Không gian làm việc chính để bố trí các biểu đồ. Tương tự như một trang Canvas trắng, bạn có thể tự do điều chỉnh kích thước và sắp xếp các khối biểu đồ.
+2. **Data Panel (Bên trái):** Nơi hiển thị nguồn tài nguyên dữ liệu. Khu vực này liệt kê toàn bộ các Bảng dữ liệu đã cấp quyền kết nối. Khi mở rộng một Bảng, danh sách các Cột/Trường dữ liệu bên trong sẽ hiển thị.
+3. **Visualizations Panel (Bên phải):** Bảng công cụ thiết kế. Gồm danh sách các Hệ Biểu đồ hỗ trợ (Bar, Line, Pie, Table, Matrix...) cùng với hai thẻ (tab) chức năng: Settings (Thiết lập cấu hình) và Designs (Thiết kế tùy chỉnh).
+
+---
+
+#### **B. Thao tác xây dựng Biểu đồ cơ bản (Bar, Line, Pie...)**
+
+**Bước 1: Chọn loại Biểu đồ**
+
+1. Tại Panel bên phải, tìm đến mục **Visualization Types**.
+2. **Kéo (Drag)** biểu tượng hình biểu đồ bạn cần (Ví dụ: Biểu đồ Cột - Bar Chart, Biểu đồ Đường - Line Chart, hoặc Biểu đồ Tròn - Pie Chart) và **Thả (Drop)** vào khung bản vẽ ở giữa.
+3. Hệ thống sẽ khởi tạo một khung biểu đồ trống. Khi bạn bấm chọn vào biểu đồ, viền khung sẽ nổi bật để báo hiệu biểu đồ này đang ở trạng thái sẵn sàng để nhận cấu hình.
+
+**Bước 2: Cấp Dữ liệu vào Biểu đồ** Trong lúc biểu đồ đang được chọn, Panel bên phải sẽ tự động tập trung vào tab **Settings (Thiết lập)**. Đây là lúc bạn sẽ ghép nối số liệu:
+
+1. Xác định Cột dữ liệu cho Trục Hoành (Trục X/Categories) - Đại diện cho danh mục nhóm dữ liệu (Ví dụ: Theo Tháng, Theo Chi Nhánh, Theo Tên Quản lý).
+   - Tại Panel bên Trái, tìm Cột dữ liệu tương ứng, **Kéo và Thả** vào ô Trục X của Panel bên Phải.
+2. Xác định Cột dữ liệu cho Trục Tung (Trục Y/Values) - Điểm biểu diễn giá trị đo lường, thường là các cột có số liệu tính toán (Ví dụ: Doanh số, Lợi nhuận).
+   - Tại Panel bên Trái, tìm Cột chứa số liệu đo lường, **Kéo và Thả** vào ô Values của Panel bên Phải.
+3. Ngay sau khi thả số liệu, biểu đồ trên khung bản vẽ sẽ lập tức **kết xuất hình ảnh báo cáo** mà không cần qua bất kỳ bước lưu hay tính toán trung gian nào.
+
+**Bước 3: Tùy chỉnh Giao diện Hiển thị (Formatting)** Để điều chỉnh màu sắc và phong cách hiển thị, bạn chuyển sang tab **Designs (Thiết kế)** ở Panel bên phải. Các chức năng tinh chỉnh phổ biến bao gồm:
+
+- **Data Labels:** Bật/tắt số liệu cụ thể hiển thị trên từng đoạn/đỉnh biểu đồ.
+- **Color:** Thay đổi hệ màu cho các cột/đường biểu diễn.
+- **Title & Typography:** Chỉnh sửa Tiêu đề chính của biểu đồ, điều chỉnh kích cỡ Font chữ.
+- **Gridlines:** Làm mờ hoặc ẩn các đường lưới tham chiếu phía sau.
+
+#### **C. Thao tác điều hướng Biểu đồ (Resize & Move)**
+
+- **Di chuyển vị trí (Move):** Nhấn giữ thanh tiêu đề (phần viền mờ sát trên cùng) của biểu đồ và kéo đến bất kỳ tọa độ nào trên bản vẽ.
+- **Điều chỉnh kích thước (Resize):** Di chuột vào góc dưới bên phải của khung biểu đồ (con trỏ sẽ đổi thành mũi tên 2 chiều), bạn có thể phóng to, thu nhỏ tùy ý. Biểu đồ sẽ tự động thay đổi tỷ lệ (responsive) để đảm bảo chất lượng hình ảnh sắc nét.

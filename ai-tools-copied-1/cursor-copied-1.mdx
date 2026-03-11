@@ -1,0 +1,49 @@
+---
+description: "Configure Cursor for your documentation workflow"
+title: "DAX"
+---
+
+#### **A. Khởi động Trình soạn thảo DAX**
+
+1. Vẫn tại giao diện tạo Cột công thức (Formula), bạn sẽ thấy một dòng chữ màu tím: **Use DAX Editor (Power BI style)**. Hãy nhấn vào đó.
+2. Màn hình sẽ chuyển sang chế độ gõ mã nguồn chuyên nghiệp dành cho dân phân tích dữ liệu.
+
+#### **B. Các thành phần của DAX Editor**
+
+Trình soạn thảo DAX của hệ thống cung cấp trải nghiệm y hệt Power BI:
+
+1. **Gợi ý tự động (Auto-complete):** Khi bạn gõ một vài chữ cái, hệ thống sẽ tự động xổ ra danh sách các Hàm DAX (như SUM, CALCULATE, DIVIDE) hoặc danh sách các Cột/Bảng hiện có để bạn chọn nhanh mả không sợ gõ sai chính tả.
+2. **Kiểm lỗi trực tiếp (Live Validation):** Trong lúc gõ, nếu bạn lỡ quên đóng ngoặc `)` hay viết sai tên cột, hệ thống sẽ ngay lập tức gạch chân đỏ và báo lỗi bằng tiếng Anh ở ngay màn hình để bạn sửa luôn.
+
+#### **C. Quy tắc viết DAX cơ bản trong hệ thống**
+
+1. **Gọi tên Bảng và Cột:** Bạn luôn nên bao quanh tên Bảng bằng dấu nháy đơn `' '` và tên Cột bằng dấu ngoặc vuông `[ ]`.
+   - _Ví dụ:_ `'Chi Phí'[Tiền Lương]` _có nghĩa là lấy cột Tiền Lương nằm trong Bảng Chi Phí._
+2. **Các Hàm tính toán:** Bạn có thể tham khảo hàng trăm hàm DAX trên mạng. Dưới đây là 3 hàm quan trọng nhất khách hàng thường dùng:
+   - **Hàm SUM:** Cộng tổng toàn bộ một cột. _Công thức:_ `SUM('Bảng A'[Cột B])`
+   - **Hàm DIVIDE:** Phép chia an toàn (tránh lỗi chia cho 0). _Công thức:_ `DIVIDE( Số Bị Chia, Số Chia, [Kết quả nếu lỗi] )`
+   - **Hàm CALCULATE:** Tính toán một số liệu nhưng bị ép vào một Điều kiện (Bộ lọc) cụ thể. _Công thức:_ `CALCULATE( Khối tính toán, Điều kiện 1, Điều kiện 2... )`
+
+#### **D. Ví dụ Thực hành Mẫu**
+
+**Mục tiêu: Tính Tỷ suất Lợi Nhuận (Margin %)** Quy tắc kế toán: Tổng Lợi nhuận chia cho Tổng Doanh thu.
+
+**Bước 1:** Bật DAX Editor lên. 
+
+**Bước 2:** Nhập công thức sau vào màn hình:
+
+```text
+DIVIDE (
+    SUM('Bảng Tài Chính'[Lợi Nhuận]),
+     SUM('Bảng Tài Chính'[Doanh Thu]),
+     0
+)
+```
+
+_(Lưu ý: Bạn chỉ cần gõ "DIV", hệ thống sẽ gợi ý "DIVIDE", nhấn Tab để chọn nhanh. Gõ tiếp "SU", hệ thống gợi ý "SUM".)_
+
+**Bước 3:** Ở mục **Format (Định dạng)** bên góc màn hình, hãy thiết lập là **Percentage (%)** để kết quả luôn hiện ra % cho đẹp mắt. 
+
+**Bước 4:** Nhấn **Save**.
+
+**Kết quả:** Bạn vừa tạo ra một Chỉ Số Động cực kỳ uy lực mang tên "Tỷ suất Lợi Nhuận". Khi bạn mang chỉ số này vào Báo cáo (Dashboard), nó sẽ tự động thay đổi giá trị % khi bạn bấm lọc theo Tháng, lọc theo Khu vực hay theo Nhân viên mà không bao giờ bị tính sai!

@@ -42,9 +42,15 @@
             "group": "Data Modeling",
             "pages": [
               "ai-tools/cursor",
-              "ai-tools/cursor-copied-1",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "ai-tools/cursor-copied-1"
+            ]
+          },
+          {
+            "group": "Data Visualization",
+            "pages": [
+              "ai-tools-copied-1/cursor",
+              "ai-tools-copied-1/cursor-copied-2",
+              "ai-tools-copied-1/cursor-copied-1"
             ]
           }
         ]
