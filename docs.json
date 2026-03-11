@@ -39,7 +39,7 @@
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Data Modeling",
             "pages": [
               "ai-tools/cursor",
               "ai-tools/claude-code",

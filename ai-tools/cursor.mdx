@@ -1,39 +1,46 @@
 ---
-title: "Cursor setup"
 description: "Configure Cursor for your documentation workflow"
-icon: "arrow-pointer"
+title: "Relationships"
 ---
 
-Set up Cursor to help you write and maintain your Mintlify documentation.
+Hãy hình dung bạn có 2 file dữ liệu trên hệ thống:
 
-## Prerequisites
+1. **Bảng "GL" (Sổ cái chung):** Chứa dữ liệu hàng trăm ngàn dòng giao dịch tài chính cực kỳ chi tiết của ILA. Tuy nhiên, bảng này chỉ ghi nhớ **"Mã Trung Tâm" (Center Code)**
+2. **Bảng "DIM Center" (Từ điển Trung tâm):** Chứa thông tin bổ trợ.
 
-- Cursor editor installed
+Nếu làm Báo cáo bằng Excel, thông thường bạn sẽ phải mất công viết hàm VLOOKUP để kéo Tên trung tâm, Khu vực... từ file DIM Center dán sang file GL. Càng nhiều dòng, file Excel càng nặng và đơ máy.
 
-## Setup
+Tuy nhiên, với công cụ **Data Modeling (Tạo Mô hình Dữ liệu)** của hệ thống, bạn không cần dùng hàm kéo dữ liệu nữa! Bạn chỉ cần "nối" 2 bảng này lại với nhau bằng một sơ đồ trực quan. Hệ thống sẽ ngay lập tức tự hiểu mối liên kết đó mãi mãi về sau.
 
-<Steps>
-<Step title="Open your docs directory in Cursor">
-  Open the root of your documentation repository where `docs.json` is located.
-</Step>
+Từ giờ, cứ mỗi lần bạn kéo dữ liệu Chi phí từ bảng GL ra màn hình, bạn có thể thoài mái gộp nhóm chúng theo "Khu vực" của bảng DIM Center mà hệ thống vẫn tự động tính toán chính xác mượt mà.
 
-<Step title="Install the Mintlify skill">
-  In the integrated terminal, run:
+---
 
-  ```bash
-  npx skills add https://mintlify.com/docs
-  ```
+#### **A. Truy cập giao diện Data Modeling**
 
-  This gives Cursor Mintlify's component reference, writing standards,
-  and workflow guidance.
-</Step>
+1. Từ màn hình làm việc của Thư mục hiện tại (Folders) hoặc khi đang xem một bảng dữ liệu (Sheets), bạn sẽ thấy nút **Hộp công cụ/Modeling** (hoặc biểu tượng Sơ đồ kết nối) trên thanh điều hướng.
+2. Nhấn vào đó, màn hình sẽ chuyển sang giao diện thiết kế Mô hình. Giữa màn hình lớn là một không gian lưới, nơi hiển thị các Bảng dữ liệu của bạn dưới dạng các thẻ (Card) hình chữ nhật. Mỗi thẻ liệt kê toàn bộ tên các cột có bên trong bảng đó.
 
-<Step title="Customize project instructions">
-  Edit `AGENTS.md` in your project root to add project-specific terminology,
-  style preferences, and content boundaries.
-</Step>
+#### **B. Tạo mới một Mối quan hệ (Relationship) nối 2 bảng**
 
-<Step title="Start writing with Cursor">
-  Open a file and use Cursor's AI features to draft and edit documentation.
-</Step>
-</Steps>
+Cực kỳ đơn giản chỉ với thao tác chuột:
+
+1. Xác định 2 bảng cần nối, và tìm điểm chung của chúng ở The Nine (thường là **Mã Trung Tâm - Center Code**).
+2. Đưa chuột vào cạnh phải của cột "Center Code" ở bảng thứ nhất (GL), con trỏ chuột sẽ đổi thành biểu tượng dấu cộng.
+3. **Nhấn giữ và Kéo chuột (Drag)** tạo thành một đường dây, thả đường dây đó vào cột "Center Code" ở bảng thứ hai (DIM Center).
+4. Hệ thống sẽ tự động vẽ một sợi dây nối liền 2 cột của 2 bảng với nhau.
+
+#### **C. Chỉnh sửa Mối quan hệ (Relationship Modal)**
+
+Ngay sau khi bạn nối dây, một bảng điều khiển nhỏ sẽ hiện ra để bạn xác nhận lại mối quan hệ vừa tạo. Đây là các thông tin quan trọng bạn cần thiết lập:
+
+1. **Source / Target:** Điền Bảng gốc (Source: GL) và Cột gốc sẽ nối sang Bảng đích (Target: DIM Center) và Cột đích.
+2. **Relationship type (Loại quan hệ):** Rất quan trọng để hệ thống tính toán thống kê (Aggregate) sau này. Bao gồm:
+   - **Many to one (Nhiều - Một):** Đây là loại hay dùng nhất. Ví dụ: Hàng trăm ngàn dòng giao dịch phát sinh của cơ sở NBT trong "GL" (Nhiều) chỉ nối tới duy nhất 1 dòng định nghĩa cơ sở NBT trong "DIM Center" (Một).
+   - **One to many (Một - Nhiều):** Ngược lại với phía trên.
+   - **One to one (Một - Một):** Ví dụ 1 dòng Mã Trung Tâm chỉ có 1 dòng Tọa độ Google Map tương ứng.
+3. **Display Field (Cột hiển thị thay thế):** Khi bạn nối bằng "Center Code" (cho hệ thống chạy nhanh), lúc lên báo cáo hiển thị bằng biểu đồ, thay vì hiện mã NBT khô khan cho Giám đốc xem, bạn có thể thiết lập hệ thống tự tráo thành cột "Tên Cơ Sở" hoặc "Tên Vùng" (Region). Chọn tên cột đó ở mục Display Field.
+
+**Hoàn tất thiết lập:** Sau khi kiểm tra kỹ các thông tin, bạn hãy nhấn nút **Save Relationship**.
+
+Khi sợi dây được kết nối thành công, bạn đã khai mở một quyền năng khổng lồ! Giờ đây khi sử dụng chức năng Dashboard/Report, bạn có thể lôi Cột "Amount" (Số tiền) từ Bảng GL, đem tính chéo với cột "Manager" (Quản lý vùng) từ Bảng DIM Center mà hệ thống vẫn hiểu và chạy báo cáo ngay lập tức!
