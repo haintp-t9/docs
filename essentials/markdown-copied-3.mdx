@@ -1,0 +1,58 @@
+---
+title: "Calculated Column "
+description: "Text, title, and styling in standard markdown"
+icon: "text-size"
+---
+
+Đôi khi bảng dữ liệu gốc của bạn bị thiếu một vài thông tin cần thiết. Ví dụ: Bạn có cột [Doanh thu] và cột [Chi phí], nhưng lại không có cột [Lợi nhuận]. Tính năng **Add Formula Column** cho phép bạn tạo ra một cột mới toanh bằng cách ghép nối, tính toán từ các cột đã có.
+
+Đặc biệt, hệ thống hỗ trợ **2 chế độ viết công thức**, từ đơn giản (chỉ cộng trừ nhân chia) cho đến phức tạp (dùng hàm Điều kiện IF, AND, OR) phù hợp cho mọi nhu cầu.
+
+---
+
+#### **A. Mở chức năng Thêm Cột Công thức**
+
+1. Tại màn hình xem dữ liệu bảng (Sheet), hãy nhìn lên góc phải của bảng và nhấn vào nút có hình dấu cộng **(+)** hoặc **Add Formula Column**.
+2. Một cửa sổ **Create formula column (Tạo cột công thức)** sẽ mở ra, gồm 2 phần chính:
+   - **Column name:** Đặt tên cho cột mới (Ví dụ: "Lợi nhuận", "Thuế", "Phân loại Khách hàng").
+   - **Formula:** Nơi bạn thiết lập quy tắc hoặc phép tính cho cột này.
+
+---
+
+#### **B. Chế độ 1: Viết phép tính cơ bản (Text Editor)**
+
+Đây là chế độ mặc định, giống hệt như bạn gõ máy tính bỏ túi. Hệ thống cho phép dùng các dấu `+`, `-`, `*` (nhân), `/` (chia) và dấu ngoặc đơn  ( ).
+
+**Cách thực hiện:**
+
+1. Bên dưới ô gõ văn bản, bạn sẽ thấy danh sách **tất cả các cột đang có sẵn** trong bảng.
+2. Hãy **Click (Nhấn)** vào tên một cột bất kỳ dưới đó. Tên cột sẽ nhảy vào ô công thức và nằm trong ngoặc vuông (Ví dụ: `[Doanh thu]`).
+3. Gõ thêm dấu phép tính và chọn tiếp cột thứ hai.
+4. **Ví dụ thực tế:** Để tính Lợi nhuận, công thức của bạn sẽ trông như thế này: `[Doanh thu] - [Chi phí]` (Hoặc bạn hoàn toàn có thể nhân chia với số tự do, ví dụ tính thuế VAT 10%: `[Doanh thu] * 0.1`).
+
+---
+
+#### **C. Chế độ 2: Xây dựng bằng Logic (Formula Builder)**
+
+Nếu bạn không mặn mà với việc "gõ mã", hoặc cần làm một phép tính phức tạp yêu cầu Điều kiện (như hàm IF trong Excel), hãy nhấn vào dòng chữ màu xanh **Use formula builder (IF, AND, OR)**.
+
+Giao diện sẽ chuyển sang dạng các Khối điều kiện để bạn sử dụng chuột chọn, rất thân thiện với dân Business.
+
+**Cách hệ thống IF hoạt động (Tương tự như văn nói):** Hệ thống sẽ dẫn dắt bạn điền theo câu "Nếu... Thì... Nếu sai thì...":
+
+1. **Condition (Điều kiện Nếu):** Ví dụ: Chọn cột `[Doanh thu]` -\> Chọn toán tử `Lớn hơn (>)` -\> Gõ con số `10.000.000`. _(Bạn có thể nhấn "Combine with AND/OR" để kẹp thêm điều kiện: VD: Doanh thu \> 10tr VÀ Khách hàng = "VIP" thì mới tính)._
+2. **If TRUE (Thì):** Nhập kết quả sẽ trả về nếu khớp điều kiện trên. Ví dụ điền chữ "Đạt chỉ tiêu".
+3. **If FALSE (Nếu sai thì):** Nhập kết quả trả về nếu không khớp. Ví dụ điền chữ "Cần cố gắng".
+
+**Những Toán tử cực mạnh được hỗ trợ sẵn:** Bên cạnh Lớn, Nhỏ, Bằng... Hệ thống nâng cấp sẵn các điều kiện quét lỗi dữ liệu rất thông minh để bạn lọc số liệu "rác":
+
+- **ISBLANK (hoặc is empty):** Cột đó bị trống không có chữ nào.
+- **ISNUMBER / ISTEXT:** Kiểm tra xem ô đó là Chữ hay là Số.
+- **ISERROR:** Kiểm tra xem ô đó có bị lỗi dữ liệu hay không.
+
+#### **D. Hoàn tất và Áp dụng**
+
+1. Các bạn có thể liếc nhìn khu vực **Formula Preview** bên dưới cùng để xem phiên bản chữ của khối điều kiện các bạn vừa ráp lại (nôm na là hệ thống tự dịch khối giao diện ra ngôn ngữ lập trình cho bạn xem).
+2. Nhấn nút **Add column (Thêm cột)** màu xanh để hoàn tất.
+
+Ngay lập tức, bảng dữ liệu của bạn sẽ xuất hiện thêm một cột mới mang tên bạn vừa đặt, và hệ thống đã tự động chạy phép tính đó trên toàn bộ hàng nghìn dòng dữ liệu hiện có trong chớp mắt! Bạn có thể đem cột mới này đi tạo bảng Pivot hay Filter tùy thích.
