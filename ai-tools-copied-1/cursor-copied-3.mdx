@@ -1,0 +1,41 @@
+---
+description: "Configure Cursor for your documentation workflow"
+title: "Drill-down & Drill-through"
+---
+
+Khi xem Bảng Ma trận (Matrix Table) kết xuất từ dữ liệu Sổ cái chung (GL - General Ledger), người dùng không chỉ dừng lại ở việc xem các con số tổng hợp tài chính mặt nổi, mà còn được trao quyền để **"đào sâu"** vào từng lớp dữ liệu. Hệ thống cung cấp hai tính năng phân tích cốt lõi mang tiêu chuẩn của các phần mềm BI hàng đầu: **Drill-down** và **Drill-through**.
+
+---
+
+#### **1. Drill-down (Bóc tách Hệ thống Tài khoản/Danh mục)**
+
+**Định nghĩa:** Drill-down là thao tác đi từ mức độ tổng quát (Ví dụ: Tài khoản Cấp 1 - Chi phí) xuống mức độ chi tiết hơn (Ví dụ: Chi phí Nhân sự -\> Lương cơ bản) theo một hệ thống phân cấp (Hierarchy) đã được thiết lập sẵn.
+
+**Cách thức hoạt động:**
+
+- Khi bạn thiết kế Matrix dựa trên bảng GL và Dimension, bạn kéo thả các trường cấp bậc vào vùng Rows (Ví dụ: `Tài khoản Cấp 1` -\> `Tài khoản Cấp 2` -\> `Tài khoản Cấp 3`), hệ thống sẽ tạo ra một P&L dạng cây.
+- **Thao tác cơ bản:**
+  - **Mở rộng:** Trên báo cáo, bên ngoài cùng của tên mục (VD: Chi phí Quản lý Doanh nghiệp) sẽ xuất hiện biểu tượng **[+]**. Nhấp vào nút này, báo cáo sẽ bung ra các dòng tài khoản cấp con (Chi phí VPP, Chi phí Khấu hao...).
+  - **Thu gọn:** Bấm vào biểu tượng **[-]** để đóng lại và nhìn ở mức độ rành mạch, tổng quan.
+- **Giá trị cho quản trị:** Giúp báo cáo P&L nhìn cực kỳ gọn gàng ở góc nhìn Giám đốc, nhưng lúc CFO hoặc Kế toán trưởng cần soi xem "Vì sao Chi phí Quản lý tháng này tăng?", chỉ việc bấm `[+]` để bóc ngay lớp chi tiết tài khoản cấu thành nên nó.
+
+---
+
+#### **2. Drill-through (Truy xuất Giao dịch gốc từ Bảng GL)**
+
+**Định nghĩa:** Nếu Drill-down là bóc tách danh mục tài khoản, thì Drill-through là việc bạn "xuyên qua" một con số tổng hợp trên báo cáo để xem bằng được **Hàng nghìn bút toán/giao dịch** lưu trong Bảng GL gốc (Raw Data) đã tạo ra con số đó.
+
+**Cách thức hoạt động:**
+
+- **Thao tác cơ bản:** Chọn một ô số liệu bất kỳ trong Bảng Ma trận (Ví dụ: ô Giao điểm của Cột Tháng 1 / Dòng Tài khoản Lương trả cấp quản lý, hiển thị 500,000,000 VND). Bạn **Click đúp chuột (Double Click)** vào con số này.
+- Hệ thống sẽ ngay lập tức tính toán tọa độ chéo của ô đó, trích xuất tất cả các bộ lọc liên quan (Tháng = 1, Mã TK = Lương Quản lý) và truy vấn trực tiếp xuống **bảng GL gốc, bỏ qua các lớp Dimension trung gian**, mở ra một cửa sổ **Bảng Dữ liệu chi tiết (Drilldown Modal)**.
+- **Giao diện Drilldown Modal (Nhật ký Bút toán):**
+  - Hiển thị danh sách chính xác các giao dịch GL (Mã chứng từ, Diễn giải, Ngày hạch toán, Số tiền Nợ/Có...) cấu thành nên số 500 triệu kia.
+  - Hỗ trợ **Phân trang (Pagination)** lưới GL gốc với tốc độ cao (Ví dụ: Mỗi trang 50 dòng bút toán).
+  - Trang bị tính năng **Tải xuống (Export)** toàn bộ danh sách bút toán này trực tiếp ra file Excel để Kế toán linh hoạt đối chiếu riêng ngoài hệ thống (Ví dụ: Vlookup với file thô khác).
+
+**Lưu ý kỹ thuật:** Chức năng Drill-through được hard-code để luôn trỏ vào bảng dữ liệu chi tiết nguồn gốc (phần lớn là GL - General Ledger) được kết nối lúc Modeling. Điều này đảm bảo Tính toàn vẹn Dữ liệu (Data Integrity): Số tổng hợp trên Báo cáo _luôn bằng_ Tổng các chứng từ gốc.
+
+---
+
+_Mẹo: Sự kết hợp hoàn hảo là dùng Slicer khoanh vùng Chi nhánh -\> Drill-down tìm ra Tài khoản Chi phí vượt định mức -\> Drill-through để nắm trọn từng bút toán cấu thành, quy trình này giúp Kế toán kiểm toán nội bộ chỉ trong 3 cái Click chuột._
