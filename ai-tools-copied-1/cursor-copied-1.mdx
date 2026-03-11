@@ -1,0 +1,47 @@
+---
+description: "Configure Cursor for your documentation workflow"
+title: "Matrix Table"
+---
+
+Matrix Table là loại biểu đồ chuyên biệt được sử dụng để xây dựng các cấu trúc báo cáo phức tạp như Báo cáo Kết quả Kinh doanh (P&L), Dòng tiền hay các truy vấn đa chiều. Do độ đa dạng về tính năng, Matrix yêu cầu cấu hình tỉ mỉ trên **Visualizations Panel** (bên phải màn hình).
+
+Bài viết này đi sâu vào các thao tác thiết lập trực tiếp trên Panel khi bạn chọn vẽ Bảng Ma trận.
+
+---
+
+#### **1. Các khu vực Nhận Dữ Liệu (Drop Zones) tại Tab Settings**
+
+Khi khung Matrix được tạo ra, Panel bên phải (Tab **Settings**) sẽ hiển thị 4 phân vùng chính để bạn kéo-thả dữ liệu:
+
+- **Rows (Trục Dòng):** Thường để các biến phân loại đóng vai trò "tiêu đề hàng".
+  - **Thao tác cơ bản:** Kéo thả lần lượt Vùng -\> Chi nhánh. Hệ thống sẽ tự động gộp nhóm theo cấu trúc Cây (hiển thị biểu tượng `+ / -` trên bảng).
+  - **Công cụ mở rộng:** Nhấp vào nút **⚙️ Settings (Sắp xếp hàng)** ở góc trên vùng Rows để tùy chỉnh Thứ tự hiển thị từng dòng.
+  - **Lọc cục bộ định mức:** Nhấp vào mũi tên cạnh mỗi Cột đã gán để bật tính năng **Filter** riêng cho cột đó.
+- **Columns (Trục Cột):** Thường để các biến phân bổ theo thời gian (Tháng, Quý, Năm).
+  - Cũng có tính năng gộp nhóm Cột, giúp bảng ma trận vừa bành trướng được theo chiều sâu, vừa gộp được theo nhóm tiêu chí dọc ngang (Ví dụ: Năm 2024 (cột cha) -\> Tháng 1, Tháng 2 (cột con)).
+- **Values (Chỉ số Đo lường):** Khu vực để thả dữ liệu Số hoặc các Công thức tính toán (DAX).
+  - **Tùy biến Toán học:** Khi thả một Trường dữ liệu số vào, bạn có thể bấm trực tiếp vào Trường đó trên Panel để đổi phương thức tính (Sum, Average, Count, Min, Max).
+  - **Công cụ mở rộng Value Settings:** Nút **⚙️ Settings** ở góc vùng Values mở ra cửa sổ cho phép bạn can thiệp trực tiếp Công thức Tính Toán Nâng cao (Calculated Rows, Thêm dòng Variance, YTD) mà không phải làm ở Data Modeling.
+- **Slicers (Bộ Lọc Đặc biệt):**
+  - Khu vực dành riêng để gá lắp các Bộ Lọc động áp dụng riêng cho kết cấu của hệ thống. Kéo thả Cột vào đây sẽ sinh ra bộ lộc để chia cắt dữ liệu Matrix. Bạn có thể nhấn nút **Hierarchy** để thiết lập quan hệ cha-con cho các lớp Slicer.
+
+---
+
+#### **2. Định Dạng Giao Diện (Formatting) tại Tab Designs**
+
+Sau khi lên khung xương (Dữ liệu), bước tiếp theo là thao tác làm đẹp và đánh bóng tại mục **Designs**. Khu vực này có 3 cụm tính năng chính:
+
+- **1. General & Style (Cấu hình bao quát):**
+  - Tùy chỉnh font chữ tổng thể.
+  - Quản lý khoảng cách, đường viền của Bảng Ma trận.
+- **2. Matrix Specific Settings (Tính năng đặc thù):**
+  - **Hierarchy Layout (Stepper):** Cách thức tổ chức các nhánh cây (cách thụt lề cho từng cấp độ tài khoản/mục tiêu).
+  - **Level Styles (Màu cấp độ):** Nơi thiết lập riêng màu sắc nền, màu chữ cho dòng Tổng nhóm (Cấp 1) khác với dòng chi tiết (Cấp 2, Cấp 3). Việc nhấn mạnh màu sắc cho từng Cấp là thao tác cực kỳ quan trọng khi xây dựng báo cáo P&L (Ví dụ: Lợi nhuận gộp thì màu đen đậm, Doanh thu thuần màu xanh dương).
+  - **Grand Totals / Sub Totals:** Bật tắt các hàng, cột cộng dồn tổng quát ở tận cùng giao diện.
+- **3. Column Title & Values Formats (Định dạng chi tiết chữ/số):**
+  - Dễ dàng bo góc hay làm nền đậm cho dòng Tiêu đề Cột.
+  - Định dạng con số (tiền Việt có dấu phẩy: `1,000,000`, thay vì `1000000`) thông qua các Rule Number Định Dạng nâng cao.
+
+---
+
+_Hướng dẫn trên chỉ tập trung vào "nút bấm ở đâu, tính năng là gì". Hãy kết hợp Matrix Settings, Value Setting và Formatting một cách khéo léo để có bảng quản trị cao cấp._
