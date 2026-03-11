@@ -1,97 +1,59 @@
 ---
-title: "Introduction"
+title: "Giới Thiệu"
 description: "Welcome to the new home for your documentation"
 ---
 
-## Setting up
+## **1. Giới thiệu chung (Introduction)**
 
-Get your documentation site up and running in minutes.
+Hệ thống là một nền tảng Business Intelligence (BI) và Data Warehousing toàn diện, được thiết kế để cung cấp năng lực phân tích dữ liệu, mô hình hóa (Data Modeling), xử lý ETL và xây dựng các báo cáo quản trị (Dashboards) mạnh mẽ tương đương với các giải pháp hàng đầu như Microsoft Power BI.
 
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
+Mục tiêu cốt lõi của hệ thống là tự động hóa luồng dữ liệu từ các nguồn phi cấu trúc (ví dụ: file Excel dung lượng lớn, API) vào hệ thống lưu trữ hiệu năng cao, từ đó cho phép người dùng cuối linh hoạt khởi tạo các báo cáo động (Matrix, Pivot, Charts) thông qua thao tác kéo thả (Drag & Drop) mà không cần can thiệp mã nguồn.
 
-## Make it yours
+## **2. Kiến trúc Hệ thống (System Architecture)**
 
-Design a docs site that looks great and empowers your users.
+Hệ thống được ứng dụng mô hình phát triển **Monorepo** tiên tiến (quản lý qua `pnpm workspaces`), bao gồm các phân hệ chính được phân tách rõ ràng nhằm đảm bảo tính mở rộng và dễ bảo trì:
 
-<Columns cols={2}>
-  <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
-  >
-    Edit your docs locally and preview them in real time.
-  </Card>
-  <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
-  >
-    Customize the design and colors of your site to match your brand.
-  </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
-  </Card>
-  <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
-  >
-    Auto-generate API documentation from OpenAPI specifications.
-  </Card>
-</Columns>
+### **2.1. Phân hệ Frontend (Web Application)**
 
-## Create beautiful pages
+- **Công nghệ lõi:** React 18, Vite, TypeScript, Tailwind CSS.
+- **Quản lý trạng thái (State Management):** Sử dụng `Zustand` kết hợp `@tanstack/react-query` xử lý cache và server-state.
+- **Báo cáo & Trực quan hóa:**
+  - Hỗ trợ dàn trang báo cáo dạng lưới linh hoạt (`react-grid-layout`).
+  - Giao diện kéo thả mượt mà (`@dnd-kit`) cho phép nhà phân tích tự cấu hình báo cáo.
+  - Các thành phần biểu đồ nâng cao qua `echarts` và lưới phân tích dữ liệu đa chiều (Matrix/Pivot tables).
+  - Soạn thảo công thức DAX/SQL tích hợp hệ thống gợi ý mã (Intellisense) qua `@monaco-editor/react`.
 
-Everything you need to create world-class documentation.
+### **2.2. Phân hệ Backend (API & Core Services)**
 
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
+- **Công nghệ lõi:** Node.js, Express.js, TypeScript.
+- **Thiết kế Domain-Driven:** Các API được thiết kế theo chuẩn RESTful và phân chia theo từng nghiệp vụ rõ ràng: Modeling, Reports, Dashboards, Connectors, ETL, Finance Analytics.
+- **Xử lý nền (Background Processing):** Tích hợp hệ thống Job Queue sử dụng `BullMQ/Redis` đảm nhận các tác vụ tính toán tốn kém tài nguyên (Heavy-lifting) như: đồng bộ dữ liệu ngoại vi, xử lý luồng Import Excel siêu lớn và các Jobs chạy lịch trình ETL.
+- **Động cơ truy vấn thông minh (Query Engine):** Module `queryBuilder` tự động biên dịch các yêu cầu phân tích phi cấu trúc từ Frontend (bao gồm cả các biểu thức tính toán DAX phức tạp) thành các câu lệnh SQL xử lý mảng (Vectorized SQL) tối ưu chạy trên hạ tầng lõi ClickHouse.
+- **Bảo mật dữ liệu:** Áp dụng chặt chẽ kiến trúc Row-Level Security (RLS) ở cấp độ truy cập cơ sở dữ liệu để lọc dữ liệu hiển thị tương ứng với cơ cấu tổ chức hệ thống (Org Hierarchy) và phân quyền (Role-based access).
 
-## Need inspiration?
+### **2.3. Phân hệ Excel Parser (ETL Service)**
 
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+- **Công nghệ lõi:** Python, FastAPI, Pandas.
+- **Chức năng:** Một Microservice độc lập chuyên trách đọc hiểu các bảng biểu phức tạp và chuẩn hóa dữ liệu từ các tệp Excel phân cấp nặng trước khi đẩy thẳng vào Data Warehouse qua giao thức batch insert tốc độ siêu cao.
+
+## **3. Hạ tầng Cơ sở dữ liệu (Data Infrastructure)**
+
+Hệ thống vận hành linh hoạt trên tinh thần kiến trúc Polyglot Persistence - Ứng dụng đúng Hệ quản trị cơ sở dữ liệu cho đúng bài toán tối ưu hoá:
+
+- **PostgreSQL 16 (Relational DB):** Đóng vai trò Primary Datastore. Chịu trách nhiệm đảm bảo tính toàn vẹn dư liệu (ACID) khi lưu trữ siêu dữ liệu (Metadata), cấu trúc cây thư mục, cấu hình mô hình hóa (Modeling definitions), thiết lập Template báo cáo, quản lý quyền hạn và Cây cấu trúc tổ chức doanh nghiệp.
+- **ClickHouse (Columnar OLAP DB):** "Trái tim" của hệ thống phân tích tính toán BI. Xử lý toàn bộ dữ liệu giao dịch khổng lồ (Fact tables), phục vụ tính toán các khối siêu dữ liệu (Data Cubes) hàng triệu dòng cho các hàm tổng hợp (SUM, AVG) trong thời gian thực dưới ngưỡng mili-giây. Kết hợp sử dụng Materialized Views để tăng tốc những truy vấn phức hợp nặng nhất.
+- **Redis 7 (In-memory Data Store & Message Broker):** Trạm trung chuyển bộ nhớ đệm tốc độ cực cao. Đảm đương quản lý Session, lưu trữ (Cache) kết quả của những bảng Matrix nhiều cấp độ cấu trúc (Matrix Cache Service), đồng thời đóng vai trò là Message Broker ổn định cho toàn bộ các background workers của Node.js.
+
+## **4. Luồng xử lý Dữ liệu Tiêu biểu (Data Flow)**
+
+1. **Thu thập dữ liệu (Ingestion):** Dữ liệu được đẩy vào hệ thống thông qua giao diện Upload Web (chuyển tiếp tác vụ sang Python Excel Parser Service) hoặc các Connectors kết nối thông minh đồng bộ trực tiếp từ Database/API bên thứ 3.
+2. **Tiền xử lý & Lưu trữ (ETL/ELT):** Dữ liệu thô ban đầu được hứng qua vùng Staging. Dựa trên các thiết lập ánh xạ (Mappings configuration), hệ thống tiến hành làm sạch, mapping Itemcodes và đẩy vĩnh viễn vào các Fact Tables trên ClickHouse.
+3. **Mô hình hóa (Modeling):** Data Engineer hoặc Quản trị viên sử dụng giao diện Node-based để tạo các liên kết dữ liệu (Relationships) kiểu Star Schema từ Bảng thực tế (Fact) sang các Bảng danh mục định danh (Dimensions) và khởi tạo các bảng phụ Chỉ số tính toán (Measures/DAX biểu thức).
+4. **Phân tích Trực quan (Analytics):** Người dùng phân tích kéo thả các chiều phân tích (Dimension fields) và chỉ số tính (Value fields) trên màn hình Dashboard Builder. Backend tiếp nhận, tự động xây dựng câu truy vấn đa bảng (JOIN/Aggregation), xử lý Power Pivot song song, và trả kết quả Data Hierachy về cho trình duyệt dựng Biểu đồ, Pivot động.
+
+## **5. Đặc quyền Báo cáo Chiến lược (Key Highlights)**
+
+- **Mô phỏng trải nghiệm Data Modeling chuyên nghiệp trên Web:** Cung cấp trải nghiệm như mô hình Desktop Apps (như MS Power BI) ngay trên trình duyệt, không cần cài đặt thêm phần mềm thứ ba.
+- **Power Pivot & Cross-Table Processing:** Tính năng liên kết tính toán đa bảng ưu việt. Tự động nhận diện, đối chiếu các Dimension Tables chung để hiển thị so sánh động (Ví dụ điển hình: So sánh trực tiếp Cột Thực tế thu chi GL vs Số dự toán Budget trên cùng một bảng Matrix phức tạp).
+- **Trích xuất & Snapshot Linh hoạt:** Hỗ trợ tính năng Shared Views phân quyền chi tiết cho khách vãng lai, Export dữ liệu linh động theo nhiều định dạng và cấu trúc Snapshot lưu lại vĩnh viễn trạng thái các Dashboard quan trọng của kỳ trước để làm đối soát số liệu.
+- **Khả năng Mở rộng Hạ Tầng (Scalability):** Thiết kế kiến trúc chia cắt luồng đọc/ghi độc lập cực đoan (Read/Write Separation) bằng việc đồng dụng ClickHouse làm OLAP Query Engine và Postgres làm Config Engine cho phép hệ thống mở rộng không có điểm nghẽn dù dữ liệu phình to lũy tiến theo các chu kỳ báo cáo hằng năm.
