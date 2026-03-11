@@ -1,0 +1,48 @@
+---
+title: "Pivot"
+description: "Text, title, and styling in standard markdown"
+icon: "text-size"
+---
+
+Nếu bạn đã từng dùng Pivot Table trên Excel để gom nhóm số liệu, tính tổng doanh thu theo tháng, hay đếm số lượng khách hàng theo khu vực... thì hệ thống cung cấp một công cụ Pivot tương tự nhưng mạnh mẽ hơn nhiều.
+
+Đặc biệt, Pivot của hệ thống cho phép bạn **kéo thả dữ liệu từ nhiều bảng khác nhau** (chứ không chỉ gói gọn trong 1 bảng như Excel).
+
+---
+
+#### **A. Cách tạo một Bảng Pivot mới**
+
+1. Mở một Folder (Thư mục) chứa các File dữ liệu bạn đã tải lên.
+2. Trên thanh công cụ, nhấn vào nút **Create Pivot** (biểu tượng bảng lưới có dấu cộng).
+3. Một hộp thoại nhỏ hiện ra, bạn hãy **đặt tên cho Bảng Pivot** (Ví dụ: "Báo cáo Doanh thu theo Tháng").
+4. Nhấn **Create (Tạo mới)**. Hệ thống sẽ mở ra một bảng tính trắng tinh cùng một thanh công cụ Phân tích nằm ở lề phải màn hình (Pivot Builder).
+
+---
+
+#### **B. Làm quen với Thanh công cụ Pivot Builder**
+
+Lúc này, bạn hãy nhìn sang cạnh phải màn hình. Thanh Pivot Builder được chia làm 2 khu vực chính:
+
+**1. Khu vực Danh sách Dữ liệu (Bên trên)** Nơi đây liệt kê toàn bộ các bảng dữ liệu đang có trong thư mục hiện tại của bạn.
+
+- Khi bạn bấm vào tên một bảng, nó sẽ xổ ra toàn bộ các "Tiêu đề cột" của bảng đó (như Mã nhân viên, Tên SP, Thành tiền...).
+- Hệ thống rất thông minh khi có thể tự động hiểu các bảng này liên kết với nhau như thế nào (ví dụ Bảng Bán hàng và Bảng Thông tin Sản phẩm).
+
+**2. Khu vực Xây dựng Báo cáo (Bên dưới)** Đây là nơi bạn "vẽ" ra báo cáo của mình bằng cách **Kéo (Drag)** các trường dữ liệu ở phía trên và **Thả (Drop)** vào các ô bên dưới. Có 3 ô quan trọng:
+
+- **Rows (Hàng)**: Các giá trị thả vào đây sẽ nằm ở cột dọc đầu tiên của báo cáo. Càng thả nhiều trường, dữ liệu càng được chia nhỏ. _(Ví dụ: Thả Khu vực, rồi thả Tên Sản phẩm -\> Báo cáo sẽ gom nhóm theo từng Khu vực, mở ra xem chi tiết từng Sản phẩm)._
+- **Columns (Cột)**: Các giá trị thả vào đây sẽ tạo thành các Cột ngang trên báo cáo. _(Ví dụ: Thả Tháng -\> Báo cáo sẽ có các cột Tháng 1, Tháng 2, Tháng 3...)._
+- **Values (Giá trị tính toán)**: Đây là trái tim của báo cáo. Bất kỳ giá trị nào thả vào đây, hệ thống sẽ tự động TÍNH TỔNG (Sum) chúng lại tại điểm giao nhau của Hàng và Cột. _(Ví dụ: Thả cột Thành Tiền -\> Ta sẽ có Tổng doanh thu theo Tháng của từng Sản phẩm)._
+
+---
+
+#### **C. Thao tác thực hành (Kéo và Thả)**
+
+1. **Thêm dữ liệu:** Nhấp chuột và giữ vào một tiêu đề cột ở danh sách phía trên, kéo rê chuột xuống và nhả chuột vào ô Rows, Cols hoặc Values trống bên dưới. Báo cáo lưới ở giữa màn hình sẽ tự động cập nhật ngay lập tức để bạn xem thử.
+2. **Sắp xếp lại:** Trong cùng ô Rows, bạn có thể bấm mũi tên Lên/Xuống để đổi vị trí ưu tiên (Ví dụ đổi từ xem Sản phẩm trước thành xem Khu vực trước).
+3. **Xóa bớt:** Nhấn vào biểu tượng "Thùng rác" hoặc dấu "X" cạnh tên trường để gỡ nó ra khỏi báo cáo.
+4. **Hiển thị gọn gàng:** Tại danh sách Rows, hệ thống có tuỳ chọn **Group By Accordion**. Bật tính năng này giúp bảng báo cáo có thể đóng/mở (Dấu + / -) các nhóm dữ liệu lớn, giúp dễ nhìn hơn trên trình duyệt thay vì hiện toàn bộ hàng nghìn dòng.
+
+#### **D. Lưu kết quả**
+
+Đừng quên! Sau khi "vẽ" ra một Bảng Pivot ưng ý, hãy nhấn vào nút **Save (Lưu)** có màu xanh dương. Hệ thống sẽ lưu lại cấu trúc bảng này. Lần sau vào lại, báo cáo sẽ tự động lấy dữ liệu mới nhất để tính toán lại y chang như vậy cho bạn xem.

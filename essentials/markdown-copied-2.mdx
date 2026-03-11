@@ -1,0 +1,36 @@
+---
+title: "Unpivot"
+description: "Text, title, and styling in standard markdown"
+icon: "text-size"
+---
+
+**Tại sao cần dùng Unpivot?** Đôi khi bạn nhận được một file Excel mà số liệu các tháng bị dàn ngang ra thành nhiều cột (Ví dụ: Cột Tháng 1, Cột Tháng 2, Cột Tháng 3...). Cách trình bày "như một tờ lịch" này tuy dễ nhìn bằng mắt, nhưng lại làm khó hệ thống khi muốn tạo biểu đồ so sánh các tháng với nhau.
+
+Tính năng **Unpivot (Dàn phẳng)** sinh ra để biến hàng loạt cột Tháng đó thành một Cột "Thuộc tính" duy nhất (chứa tên tháng) và một Cột "Giá trị" (chứa con số). Đây là hình thức chuẩn nhất để BI (Business Intelligence) có thể phân tích dữ liệu.
+
+---
+
+#### **A. Cách thực hiện Dàn phẳng dữ liệu (Unpivot)**
+
+**Bước 1: Mở công cụ Unpivot** Trong màn hình xem chi tiết một bảng dữ liệu (Sheet), bạn hãy tìm nút **Unpivot** trên thanh công cụ và nhấp vào nó. Một bảng điều khiển sẽ hiện ra.
+
+**Bước 2: Thiết lập thông số** Cửa sổ Unpivot sẽ yêu cầu bạn khai báo 4 mục đơn giản:
+
+1. **New Sheet Name (Tên bảng mới):** Đặt tên cho bảng dữ liệu sau khi dàn phẳng (hệ thống mặc định thêm chữ " - Unpivoted" vào sau tên bảng cũ, bạn có thể tự đổi lại).
+2. **ID Columns (Các cột giữ nguyên):** Đây là những cột chứa thông tin căn bản không được phép thay đổi (Ví dụ: Cột _Mã Sản phẩm_, _Tên Sản phẩm_). Hãy click chọn chúng để hệ thống giữ nguyên vị trí.
+3. **Value Columns (Các cột cần bẻ dọc):** Đây là những cột bạn muốn gộp chung lại (Ví dụ: Cột _T1_, _T2_, _T3_...). _(Mẹo: Bạn có thể giữ phím Ctrl/Cmd trên bàn phím để click chọn nhiều cột cùng lúc)._
+
+**Bước 3: Đặt lại tên cho hai cột mới** Sau khi gộp, toàn bộ tên các cột (T1, T2...) sẽ bị dồn vào 1 cột mới; toàn bộ các con số sẽ bị dồn vào 1 cột mới khác. Bạn cần đặt tên cho 2 cột này:
+
+- **Attribute Column Name (Tên cột Thuộc tính):** Mặc định là "Attribute", bạn nên đổi thành "Tháng" hoặc "Kỳ báo cáo" cho dễ hiểu.
+- _(Nâng cao) Attribute Postfix:_ Phần chữ muốn ghép thêm đằng sau tên (Ví dụ: Nếu bạn điền "-2025", tên T1 sẽ tự động biến thành "T1-2025").
+- **Value Column Name (Tên cột Giá trị):** Mặc định là "Value", bạn có thể đổi thành "Doanh thu" hoặc "Số lượng".
+
+---
+
+#### **B. Xem trước và Khởi tạo**
+
+- **Preview (Xem trước kết quả):** Trước khi quyết định bấm tạo, bạn nên nhấn nút **Preview (Xem thử)**. Hệ thống sẽ lấy thử 20 dòng đầu tiên, thực hiện phép gộp và hiển thị kết quả ngay trên màn hình. Bạn sẽ thấy ngay bảng của mình sau khi dàn phẳng trông sẽ như thế nào, tránh việc làm sai mất thời gian.
+- **Create (Hoàn tất tạo):** Nếu kết quả Preview đã đúng như ý muốn, hãy nhấn nút **Create (Tạo bảng)** màu xanh.
+
+Hệ thống sẽ chạy ngầm để bóc tách và tính toán lại toàn bộ file của bạn, sau đó sẽ sinh ra một bảng hoàn toàn mới (file gốc của bạn vẫn được giữ nguyên vẹn không bị ảnh hưởng). Bảng mới này đã sẵn sàng 100% để vẽ biểu đồ và phân tích!
