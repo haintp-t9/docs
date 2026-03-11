@@ -3,3 +3,57 @@ title: "Filter Rows"
 description: "Text, title, and styling in standard markdown"
 icon: "text-size"
 ---
+
+Khi bạn đã tải file lên thành công và có một bảng tính khổng lồ (với hàng chục nghìn dòng), tính năng Lọc dữ liệu (Filter) sẽ giúp bạn nhanh chóng tìm ra chính xác những mẩu thông tin mình cần.
+
+Hệ thống cung cấp một thanh công cụ Lọc chuyên nghiệp mở từ cạnh phải màn hình (Filter Drawer) với nhiều tính năng tương tự như bộ lọc nâng cao trên Excel.
+
+---
+
+#### **A. Gọi Thanh công cụ Lọc (Mở Filter Drawer)**
+
+Để bắt đầu lọc dữ liệu:
+
+1. Bạn hãy mở bảng dữ liệu cần thao tác.
+2. Trên thanh công cụ phía trên cùng bảng, tìm và nhấn vào nút có chữ **Filter** (biểu tượng hình phễu).
+3. Một bảng điều khiển có tên **Filter** sẽ trượt ra từ lề bên phải màn hình.
+
+---
+
+#### **B. Các tính năng chính trong bảng Lọc**
+
+Tại bảng **Filter**, thao tác đầu tiên CẦN LÀM là nhấp vào mục **Column (Chọn cột)** để nói cho hệ thống biết bạn muốn lọc dữ liệu ở cột nào 
+
+Sau khi chọn xong cột, bạn sẽ có các tùy chọn sức mạnh sau:
+
+**1. Sắp xếp thứ tự (Sort Options)**
+
+- **Sort A to Z**: Sắp xếp bảng tính theo thứ tự bảng chữ cái (từ A-Z đối với chữ) hoặc từ Thấp lên Cao (đối với số).
+- **Sort Z to A**: Xếp ngược lại theo bảng chữ cái (Z-A) hoặc từ Cao xuống Thấp. _Tính năng này rất hữu ích để tìm ra ngay "Ai là người có doanh thu cao nhất/thấp nhất" xếp ở đầu danh sách._
+
+**2. Lọc theo giá trị cụ thể (Filter by values)** Đây là cách lọc phổ biến nhất. Hệ thống sẽ quét qua toàn bộ dữ liệu của cột bạn chọn và gom chúng lại thành một danh sách gọn gàng (không trùng lặp).
+
+- Bạn chỉ việc **tích chọn (dấu tick vuông)** vào các giá trị mà bạn muốn giữ lại trên bảng.
+- Khung tìm kiếm **Search values...** giúp bạn gõ từ khóa để tìm nhanh một giá trị trong danh sách dài.
+- **Select all** / **Clear**: Nút bấm nhanh để Chọn tất cả hoặc Xóa chọn tất cả.
+
+**3. Lọc theo điều kiện nâng cao (Filter by condition)** Nếu bạn không biết đích xác giá trị cần tìm, hoặc muốn tìm các con số nằm trong một khoảng nhất định, hãy chuyển sang tab **Filter by condition**. Tại đây bạn chọn một điều kiện và nhập con số cụ thể:
+
+- **Ví dụ về Cột Văn bản (Chữ):**
+  - _Contains (Chứa từ)_: Lọc ra tất cả Khách hàng có tên chứa từ "Nguyễn".
+  - _Starts with (Bắt đầu bằng)_: Lọc các Mã đơn hàng bắt đầu bằng "HCM-".
+- **Ví dụ về Cột Số liệu (Doanh thu, Chi phí...):**
+  - _Greater than (Lớn hơn)_: Lọc các đơn hàng có doanh thu Lớn hơn 5.000.000đ.
+  - _Less than (Nhỏ hơn)_: Lọc các khoản chi phí Nhỏ hơn 1.000.000đ.
+- **Lọc tìm dữ liệu lỗi:**
+  - _Is empty (Bị trống)_: Tìm nhanh các dòng Khách hàng bị quên nhập Số điện thoại.
+  - _Is not empty (Không bị trống)_: Chỉ hiện những dòng có đầy đủ thông tin.
+
+---
+
+#### **C. Hoàn tất việc Lọc**
+
+Sau khi đã thiết lập xong thứ tự xếp và các điều kiện lọc mong muốn:
+
+1. Kéo xuống dưới cùng của bảng Filter, bạn sẽ thấy nút **OK** màu xanh.
+2. Hãy nhấn nút **OK**. Màn hình của bạn sẽ ngay lập tức được dọn dẹp và chỉ hiển thị đúng các dòng dữ liệu thỏa mãn bộ lọc của bạn! _(Bất cứ lúc nào muốn quay lại như cũ, bạn chỉ cần mở lại bảng Filter và bấm Cancel hoặc bỏ các dấu tick vừa chọn)._
